@@ -1,0 +1,59 @@
+# git-cliff configuration.
+#
+# CHANGELOG.md is GENERATED from the Conventional Commit history -- never edit
+# it by hand. Regenerate with:  git-cliff -o CHANGELOG.md
+#
+# This file is deliberately IDENTICAL in every repo (no GitHub remote block, no
+# repo-specific links), so it can be updated everywhere by copying one file.
+# The commit types below are the closed set defined in the global CLAUDE.md.
+
+[changelog]
+header = """
+# Changelog
+
+All notable changes to this project are documented in this file.
+This file is generated from the commit history -- do not edit it by hand.\n
+"""
+body = """
+{% if version %}\
+## {{ version | trim_start_matches(pat="v") }} - {{ timestamp | date(format="%Y-%m-%d") }}
+{% else %}\
+## Unreleased
+{% endif %}\
+{% for group, commits in commits | group_by(attribute="group") %}
+### {{ group | striptags | trim | upper_first }}
+{% for commit in commits %}
+- {% if commit.scope %}**{{ commit.scope }}**: {% endif %}\
+{{ commit.message | upper_first }}\
+{% endfor %}
+{% endfor %}\n
+"""
+footer = ""
+trim = true
+
+[git]
+conventional_commits = true
+# Keep non-conforming commits rather than silently dropping them -- if one shows
+# up under "Miscellaneous", that is a signal the convention was not followed.
+filter_unconventional = false
+filter_commits = false
+protect_breaking_commits = true
+split_commits = false
+topo_order = false
+sort_commits = "oldest"
+tag_pattern = "v[0-9]*"
+
+# The <!-- N --> prefixes only set section ORDER; `striptags` removes them from
+# the rendered heading.
+commit_parsers = [
+  { message = "^feat",     group = "<!-- 0 -->Features" },
+  { message = "^fix",      group = "<!-- 1 -->Bug Fixes" },
+  { message = "^perf",     group = "<!-- 2 -->Performance" },
+  { message = "^refactor", group = "<!-- 3 -->Refactor" },
+  { message = "^docs",     group = "<!-- 4 -->Documentation" },
+  { message = "^build",    group = "<!-- 5 -->Build" },
+  { message = "^ci",       group = "<!-- 6 -->CI" },
+  { message = "^test",     group = "<!-- 7 -->Testing" },
+  { message = "^chore",    group = "<!-- 8 -->Miscellaneous" },
+  { message = ".*",        group = "<!-- 9 -->Other" },
+]
