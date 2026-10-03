@@ -34,7 +34,7 @@ trim = true
 [git]
 conventional_commits = true
 # Keep non-conforming commits rather than silently dropping them -- if one shows
-# up under "Miscellaneous", that is a signal the convention was not followed.
+# up under "Other", that is a signal the convention was not followed.
 filter_unconventional = false
 filter_commits = false
 protect_breaking_commits = true
@@ -43,17 +43,18 @@ topo_order = false
 sort_commits = "oldest"
 tag_pattern = "v[0-9]*"
 
-# The <!-- N --> prefixes only set section ORDER; `striptags` removes them from
-# the rendered heading.
+# The <!-- NN --> prefixes only set section ORDER; `striptags` removes them from
+# the rendered heading. Groups sort as strings, so the numbers are two digits.
 commit_parsers = [
-  { message = "^feat",     group = "<!-- 0 -->Features" },
-  { message = "^fix",      group = "<!-- 1 -->Bug Fixes" },
-  { message = "^perf",     group = "<!-- 2 -->Performance" },
-  { message = "^refactor", group = "<!-- 3 -->Refactor" },
-  { message = "^docs",     group = "<!-- 4 -->Documentation" },
-  { message = "^build",    group = "<!-- 5 -->Build" },
-  { message = "^ci",       group = "<!-- 6 -->CI" },
-  { message = "^test",     group = "<!-- 7 -->Testing" },
-  { message = "^chore",    group = "<!-- 8 -->Miscellaneous" },
-  { message = ".*",        group = "<!-- 9 -->Other" },
+  { message = "^feat",     group = "<!-- 00 -->Features" },
+  { message = "^fix",      group = "<!-- 01 -->Bug Fixes" },
+  { message = "^revert",   group = "<!-- 02 -->Reverts" },
+  { message = "^perf",     group = "<!-- 03 -->Performance" },
+  { message = "^refactor", group = "<!-- 04 -->Refactor" },
+  { message = "^docs",     group = "<!-- 05 -->Documentation" },
+  { message = "^build",    group = "<!-- 06 -->Build" },
+  { message = "^ci",       group = "<!-- 07 -->CI" },
+  { message = "^test",     group = "<!-- 08 -->Testing" },
+  { message = "^chore",    group = "<!-- 09 -->Miscellaneous" },
+  { message = ".*",        group = "<!-- 10 -->Other" },
 ]
