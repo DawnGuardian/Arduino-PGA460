@@ -1,7 +1,9 @@
 # git-cliff configuration.
 #
 # CHANGELOG.md is GENERATED from the Conventional Commit history -- never edit
-# it by hand. Regenerate with:  git-cliff -o CHANGELOG.md
+# it by hand. Regenerate it INSIDE the commit that changes the history, never as
+# a commit of its own:
+#   git-cliff --with-commit "<subject of the commit being made>" -o CHANGELOG.md
 #
 # This file is deliberately IDENTICAL in every repo (no GitHub remote block, no
 # repo-specific links), so it can be updated everywhere by copying one file.
@@ -46,6 +48,10 @@ tag_pattern = "v[0-9]*"
 # The <!-- NN --> prefixes only set section ORDER; `striptags` removes them from
 # the rendered heading. Groups sort as strings, so the numbers are two digits.
 commit_parsers = [
+  # Legacy stand-alone "regenerate the changelog" commits say nothing about the
+  # project, so they are left out of the changelog.
+  { message = '(?im)\A[a-z]+(\([^)]*\))?!?: regenerate (the )?changelog(\.md)?$', skip = true },
+  { message = '(?im)\A[a-z]+\(changelog\)!?: regenerate from the commit history$', skip = true },
   { message = "^feat",     group = "<!-- 00 -->Features" },
   { message = "^fix",      group = "<!-- 01 -->Bug Fixes" },
   { message = "^revert",   group = "<!-- 02 -->Reverts" },

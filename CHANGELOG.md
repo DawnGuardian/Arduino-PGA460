@@ -22,6 +22,12 @@ This file is generated from the commit history -- do not edit it by hand.
 
 - Correct minor spelling mistakes in the read-me
 
+### Build
+
+- Add git-cliff changelog configuration
+- **changelog**: Add a revert group to the git-cliff config
+- Sync cliff.toml with the canonical copy
+
 ### Miscellaneous
 
 - Ignore shared-OS files and update source file modes
