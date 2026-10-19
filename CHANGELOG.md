@@ -31,5 +31,6 @@ This file is generated from the commit history -- do not edit it by hand.
 ### Miscellaneous
 
 - Ignore shared-OS files and update source file modes
+- Add the shared .editorconfig
 
 
