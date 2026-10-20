@@ -1,0 +1,17 @@
+# Canonical .clang-format, distributed unchanged into the root of every repository with C or C++
+# code, like .editorconfig and cliff.toml. clang-format ignores .editorconfig, so this file is the
+# whole of the C and C++ style. CLion switches to its Clang-Format engine when it finds this file
+# under the project root; VS Code's C/C++ extension and the clang-format CLI read it directly.
+#
+# The same style, as one line, is the VS Code fallback for files outside any repository.
+BasedOnStyle: LLVM
+UseTab: Never
+IndentWidth: 4
+TabWidth: 4
+BreakBeforeBraces: Attach
+IndentCaseLabels: true
+ColumnLimit: 0
+AlignConsecutiveAssignments: true
+InsertBraces: true
+LineEnding: LF
+InsertNewlineAtEOF: true
